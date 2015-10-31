@@ -8,20 +8,19 @@ var fragment = document.createDocumentFragment();
 
 function isLetter(keyCode){
     var character = String.fromCharCode(keyCode).toLowerCase();
-    var letter = character.length === 1 && character.match(/[a-z]/i);
-    
-    addValueToNode(letter);
+    return character.length === 1 && character.match(/[a-z]/i);
+    //addValueToNode(letter);
 }
 
-function addValueToNode(guessedLetter){    
-    var nodes = document.getElementsByClassName(guessedLetter);
-    if(nodes){
+//function addValueToNode(guessedLetter){    
+//    var nodes = document.getElementsByClassName(guessedLetter);
+//    if(nodes){
 
-        for (var i = 0; i < nodes.length; i++){
-            nodes[i].textContent = guessedLetter;
-        }   
-    }
-}
+//        for (var i = 0; i < nodes.length; i++){
+//            nodes[i].textContent = guessedLetter;
+//        }   
+//    }
+//}
 
 function playGame() {
     var availableWords = ["schnitzel", "juice", "crocodile", "kurosaki"];
@@ -43,10 +42,27 @@ function playGame() {
     var keyCode;
     var letter;
     window.addEventListener("keyup", function (event) {
-        isLetter(event.keyCode);
+        //isLetter(event.keyCode);
+
+        keyCode = event.keyCode;
+
+        if(isLetter(keyCode)){
+           letter = String.fromCharCode(keyCode).toLowerCase();
+
+        }
+
+        //alert(letter);
     });
 
+    alert(letter);
+   
+    var nodes = document.getElementsByClassName(letter);
+    if(nodes){
 
+        for (var i = 0; i < nodes.length; i++){
+            nodes[i].textContent = letter;
+        }   
+    }
 
 
     //guessedLetter = isLetter(letter);
