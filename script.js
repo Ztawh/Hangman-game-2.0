@@ -56,8 +56,6 @@ function availableLetters(alphabet){
 
 }
 
-
-
 function playGame() {
     var availableWords = ["schnitzel", "juice", "crocodile", "kurosaki"];
     var word = availableWords[Math.floor(Math.random() * availableWords.length)];
@@ -80,9 +78,6 @@ function playGame() {
         var letter;
 
         if(isLetter(keyCode)){
-            //letter = String.fromCharCode(keyCode).toLowerCase();
-            //var index = alphabet.indexOf(letter);
-            //alphabet.splice(index, 1);
             
             if(guessedKeyCodes.indexOf(keyCode) !== -1){
             alert("You have already tried that letter, please select from the remaining letters.");
@@ -93,11 +88,7 @@ function playGame() {
 
         var letter = String.fromCharCode(keyCode).toLowerCase();
 
-        //CHANGE THIS TO GET VALUES IN DOCUMENT the-alphabet AND REWRITE DE VALUE
-        //var index = alphabet.indexOf(letter);
-        //alphabet.splice(index, 1);
 
-        
         //var parent = document.getElementsByTagName("content");
         var letterClass = document.getElementsByClassName("the-alphabet");
         for (var i=0; i<letterClass.length; i++){
@@ -115,8 +106,6 @@ function playGame() {
 
             var letterPosition = lettersInWord.indexOf(letter);
             lettersInWord.splice(letterPosition, 1);
-
-            //availableLetters(alphabet);
 
             if (lettersInWord.length == 0)
                 youWon(word);
