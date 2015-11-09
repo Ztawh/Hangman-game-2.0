@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', function (){
 
 document.getElementById("start").addEventListener("click", playGame);
 
-
- 
 function isLetter(keyCode) {
     var character = String.fromCharCode(keyCode).toLowerCase();
     return character.length === 1 && character.match(/[a-z]/i);
@@ -29,7 +27,7 @@ function youWon(word) {
 
     var winner = document.createElement("winner");
     winner.className = "winner";
-    winner.textContent = "Congratulations! You won the game!";
+    winner.textContent = "Congratulations! You won the game! The ";
     fragment.appendChild(winner);
 
     var content = document.getElementsByClassName("content")[0];
@@ -53,7 +51,30 @@ function availableLetters(alphabet){
     }
     var content = document.getElementsByClassName("content")[0];
     content.appendChild(fragment);
+}
 
+function gameOver(word){
+    var fragment = document.createDocumentFragment();
+
+    var youLost = document.createElement("div");
+    youLost.className = "game-over";
+    youLost.textContent = "Well, that's embarrasing.. for you. The game, is over. The correct word was '" + word + "'!";
+    fragment.appendChild(youLost);
+
+    var content = document.getElementsByClassName("content")[0];
+    content.appendChild(fragment);
+}
+
+function lives(tries){
+    var fragment = document.createDocumentFragment();
+
+    var livesLeft = document.createElement("div");
+    livesLeft.className = "lives";
+    livesLeft.textContent = "You have " + tries + "lives left.";
+    fragment.appendChild(livesLeft);
+
+    var content = document.getElementsByClassName("content")[0];
+    content.appendChild(fragment);
 }
 
 function playGame() {
@@ -62,7 +83,10 @@ function playGame() {
 
     var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
+    var tries = 7;
+
     availableLetters(alphabet);
+    lives(tries);
     addUnderscore(word);
 
     var guessedKeyCodes = [];
@@ -78,7 +102,6 @@ function playGame() {
         var letter;
 
         if(isLetter(keyCode)){
-            
             if(guessedKeyCodes.indexOf(keyCode) !== -1){
             alert("You have already tried that letter, please select from the remaining letters.");
            }
@@ -87,19 +110,13 @@ function playGame() {
         guessedKeyCodes.push(keyCode);
 
         var letter = String.fromCharCode(keyCode).toLowerCase();
-
-
-        //var parent = document.getElementsByTagName("content");
-        var letterClass = document.getElementsByClassName("the-alphabet");
-        for (var i=0; i<letterClass.length; i++){
-            if(letterClass[i] == letter){
-                letterClass[i].textContent = " ";
-                //parent.removeChild(letter);
-            }
-        }
+        
+        var letterClass = document.getElementsByClassName("the-alphabet " + letter);
+        console.log("LetterClass", letterClass);
+        letterClass[0].textContent = " ";
 
         if(word.indexOf(letter) !== -1){
-            var nodes = document.getElementsByClassName(letter);
+            var nodes = document.getElementsByClassName("underscore " + letter);
             for (var i = 0; i < nodes.length; i++){
                 nodes[i].textContent = letter;
             }   
@@ -111,8 +128,17 @@ function playGame() {
                 youWon(word);
         }
 
-        
+        if(word.indexOf(letter) == -1){
+            tries -= 1;
 
+            var domNodes = document.getElementsByClassName("lives");
+            for(var i = 0; i < domNodes.length; i++){
+                domNodes[i].textContent = "You have " + tries + " lives left.";
+            }
+
+            if(tries == 0){
+                gameOver(word);
+            }
+        }
     });
-
 }
