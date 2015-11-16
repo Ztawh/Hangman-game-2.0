@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function (){
+    document.getElementById("start").addEventListener("click", playGame);
 
 });
-
-document.getElementById("start").addEventListener("click", playGame);
 
 function isLetter(keyCode) {
     var character = String.fromCharCode(keyCode).toLowerCase();
@@ -25,12 +24,19 @@ function addUnderscore(word) {
 function youWon(word) {
     var fragment = document.createDocumentFragment();
 
-    var winner = document.createElement("winner");
+    var winner = document.createElement("div");
     winner.className = "winner";
-    winner.textContent = "Congratulations! You won the game! The ";
+    winner.textContent = "Congratulations!";
+
+    var theWord = document.createElement("div");
+    theWord.className = "the-word";
+    theWord.textContent = "You won the game! The word was '" + word + "'!";
+
     fragment.appendChild(winner);
+    fragment.appendChild(theWord);
 
     var content = document.getElementsByClassName("content")[0];
+    content.innerHTML = "";
     content.appendChild(fragment);
 }
 
@@ -50,6 +56,7 @@ function availableLetters(alphabet){
         fragment.appendChild(theAlphabet);
     }
     var content = document.getElementsByClassName("content")[0];
+    content.innerHTML = "";
     content.appendChild(fragment);
 }
 
@@ -58,10 +65,17 @@ function gameOver(word){
 
     var youLost = document.createElement("div");
     youLost.className = "game-over";
-    youLost.textContent = "Well, that's embarrasing.. for you. The game, is over. The correct word was '" + word + "'!";
+    youLost.textContent = "GAME OVER!";
+    
+    var correctWord = document.createElement("div");
+    correctWord.className = "correct-word";
+    correctWord.textContent = "The correct word was '" + word + "'!";
+
     fragment.appendChild(youLost);
+    fragment.appendChild(correctWord);
 
     var content = document.getElementsByClassName("content")[0];
+    content.innerHTML = "";
     content.appendChild(fragment);
 }
 
@@ -70,7 +84,7 @@ function lives(tries){
 
     var livesLeft = document.createElement("div");
     livesLeft.className = "lives";
-    livesLeft.textContent = "You have " + tries + "lives left.";
+    livesLeft.textContent = "Lives: " + tries;
     fragment.appendChild(livesLeft);
 
     var content = document.getElementsByClassName("content")[0];
@@ -78,6 +92,7 @@ function lives(tries){
 }
 
 function playGame() {
+
     var availableWords = ["schnitzel", "juice", "crocodile", "kurosaki"];
     var word = availableWords[Math.floor(Math.random() * availableWords.length)];
 
@@ -91,7 +106,6 @@ function playGame() {
 
     var guessedKeyCodes = [];
     var keyCode;
-    
 
     var lettersInWord = word.split("").filter(function (element, position){
         return word.indexOf(element) == position;
@@ -99,7 +113,6 @@ function playGame() {
 
     window.addEventListener("keyup", function (event) {
         keyCode = event.keyCode;
-        var letter;
 
         if(isLetter(keyCode)){
             if(guessedKeyCodes.indexOf(keyCode) !== -1){
@@ -112,8 +125,7 @@ function playGame() {
         var letter = String.fromCharCode(keyCode).toLowerCase();
         
         var letterClass = document.getElementsByClassName("the-alphabet " + letter);
-        console.log("LetterClass", letterClass);
-        letterClass[0].textContent = " ";
+        letterClass[0].textContent = "_";
 
         if(word.indexOf(letter) !== -1){
             var nodes = document.getElementsByClassName("underscore " + letter);
@@ -128,7 +140,7 @@ function playGame() {
                 youWon(word);
         }
 
-        if(word.indexOf(letter) == -1){
+        if(word.indexOf(letter) == -1 && guessedKeyCodes.indexOf(keyCode) !== -1){
             tries -= 1;
 
             var domNodes = document.getElementsByClassName("lives");

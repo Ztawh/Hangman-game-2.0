@@ -1,0 +1,36 @@
+html, body {
+  margin: 0;
+  padding: 0; }
+
+body {
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif; }
+  body .container .content {
+    margin-left: auto;
+    margin-right: auto; }
+    body .container .content .the-alphabet, body .container .content .underscore {
+      display: inline-block;
+      padding: 1em;
+      font-size: 120%; }
+    body .container .content .underscore {
+      margin-top: 2em;
+      font-size: 200%; }
+    body .container .content .the-alphabet {
+      border-style: none none solid none;
+      border-color: #00c0ff; }
+    body .container .content h1 {
+      font-size: 250%;
+      padding-top: 1em; }
+    body .container .content .alphabet-info {
+      margin-top: 2em; }
+    body .container .content #start {
+      font-size: 130%;
+      border-radius: 5px;
+      padding: 6px 12px;
+      border-style: none;
+      background-color: #00c0ff;
+      color: white; }
+    body .container .content .lives {
+      margin-top: 2em; }
+
+/*# sourceMappingURL=style.css.map */

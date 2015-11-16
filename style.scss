@@ -1,0 +1,58 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+
+    .container .content {
+        margin-left: auto;
+        margin-right: auto;
+
+        .the-alphabet, .underscore {
+            display: inline-block;
+            padding: 1em;
+            font-size: 120%;
+        }
+
+        .underscore {
+            margin-top: 2em;
+            font-size: 200%;
+        }
+
+        .the-alphabet {
+            border-style: none none solid none;
+            border-color: #00c0ff;
+        }
+    
+
+        h1 {
+            font-size: 250%;
+            padding-top: 1em;
+        }
+
+        .alphabet-info {// GET THIS TO WORK!
+            margin-top: 2em;
+        }
+
+        #start {
+            font-size: 130%;
+            border-radius: 5px;
+            padding: 6px 12px;
+            border-style: none;
+            background-color: #00c0ff;
+            color: white;
+        }
+
+        .lives {
+            margin-top: 2em;
+
+        }
+
+    }
+
+  
+    
+}
