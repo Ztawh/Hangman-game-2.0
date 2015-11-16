@@ -1,3 +1,6 @@
+$blue: #00c0ff;
+$top-margin: 2em;
+
 html, body {
     margin: 0;
     padding: 0;
@@ -10,31 +13,31 @@ body {
     .container .content {
         margin-left: auto;
         margin-right: auto;
+        font-weight: 400;
 
         .the-alphabet, .underscore {
             display: inline-block;
             padding: 1em;
-            font-size: 120%;
         }
 
         .underscore {
-            margin-top: 2em;
+            margin-top: $top-margin;
             font-size: 200%;
         }
 
         .the-alphabet {
             border-style: none none solid none;
-            border-color: #00c0ff;
+            border-color: $blue;
+            font-size: 110%;
         }
     
-
         h1 {
             font-size: 250%;
-            padding-top: 1em;
+            margin-top: $top-margin;
         }
 
-        .alphabet-info {// GET THIS TO WORK!
-            margin-top: 2em;
+        .alphabet-info {
+            margin-top: $top-margin;
         }
 
         #start {
@@ -42,17 +45,17 @@ body {
             border-radius: 5px;
             padding: 6px 12px;
             border-style: none;
-            background-color: #00c0ff;
+            background-color: $blue;
             color: white;
         }
 
         .lives {
-            margin-top: 2em;
-
+            margin-top: $top-margin;
+            font-size: 150%;
         }
 
+        .winner, .game-over {
+            margin-top: $top-margin;
+        }
     }
-
-  
-    
 }

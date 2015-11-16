@@ -24,7 +24,7 @@ function addUnderscore(word) {
 function youWon(word) {
     var fragment = document.createDocumentFragment();
 
-    var winner = document.createElement("div");
+    var winner = document.createElement("h1");
     winner.className = "winner";
     winner.textContent = "Congratulations!";
 
@@ -45,7 +45,7 @@ function availableLetters(alphabet){
 
     var alphabetInfo = document.createElement("div");
     alphabetInfo.className = "alphabet-info";
-    alphabetInfo.textContent = "Please type a letter from the available ones below.";
+    alphabetInfo.textContent = "Type a letter";
     fragment.appendChild(alphabetInfo);
 
     for(var i=0; i < alphabet.length; i++){
@@ -63,7 +63,7 @@ function availableLetters(alphabet){
 function gameOver(word){
     var fragment = document.createDocumentFragment();
 
-    var youLost = document.createElement("div");
+    var youLost = document.createElement("h1");
     youLost.className = "game-over";
     youLost.textContent = "GAME OVER!";
     
@@ -145,7 +145,7 @@ function playGame() {
 
             var domNodes = document.getElementsByClassName("lives");
             for(var i = 0; i < domNodes.length; i++){
-                domNodes[i].textContent = "You have " + tries + " lives left.";
+                domNodes[i].textContent = "Lives: " + tries;
             }
 
             if(tries == 0){
